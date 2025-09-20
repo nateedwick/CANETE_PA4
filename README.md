@@ -17,7 +17,7 @@ Note: When opening Excel files directly in GitHub, the preview may look differen
 ## Problems and Solutions
 
 ### 1. Instru DataFrame
-- **Goal:** reate a DataFrame named Instru containing students who are from Instrumentation track, with Luzon as their hometown, and an Electronics grade greater than 70. Keep only the columns Name, GEAS, and Electronics.
+- **Goal:** Create a DataFrame named Instru containing students who are from Instrumentation track, with Luzon as their hometown, and an Electronics grade greater than 70. Keep only the columns Name, GEAS, and Electronics.
 
 - **Code:**  Import the Pandas library and use pd.read_excel() to load the dataset into a DataFrame. Apply boolean conditions (Track = Instrumentation, Hometown = Luzon, Electronics > 70) to filter rows. Store the result in Instru. In a second step, select only the required columns (Name, GEAS, Electronics) from the filtered DataFrame. This “double-step” approach makes the filtering and column selection easier to read.
   
