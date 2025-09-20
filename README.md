@@ -19,7 +19,8 @@ Note: When opening Excel files directly in GitHub, the preview may look differen
 ### 1. Instru DataFrame
 - **Goal:** reate a DataFrame named Instru containing students who are from Instrumentation track, with Luzon as their hometown, and an Electronics grade greater than 70. Keep only the columns Name, GEAS, and Electronics.
 
-- **Code:**  Import the Pandas library and use the **pd.read_csv( )** function to load the CSV file into a DataFrame named cars. To display the first five rows, call the **.head( )** method, and to display the last five rows, call the **.tail( )** method.
+- **Code:**  Import the Pandas library and use pd.read_excel() to load the dataset into a DataFrame. Apply boolean conditions (Track = Instrumentation, Hometown = Luzon, Electronics > 70) to filter rows. Store the result in Instru. In a second step, select only the required columns (Name, GEAS, Electronics) from the filtered DataFrame. This “double-step” approach makes the filtering and column selection easier to read.
+  
   ```python
   import pandas as pd
   df = pd.read_excel("board2.xlsx")
@@ -31,53 +32,23 @@ Note: When opening Excel files directly in GitHub, the preview may look differen
   Instru
   
 - **Output:**
-[Cars Head Output](FirstFive.png)
+[Instru Output](dataframea.png)
 
-b.
-```python
-   cars.tail()
-```
-- **Output:**
-[Cars Tail Output](LastFive.png)
-      
+ ### 2. Mindy DataFrame
+- **Goal:** Create a DataFrame named Mindy containing students who are Female, from Mindanao, and have an Average grade of at least 55. Keep only the columns Name, Track, Electronics, and Average.
 
- ### 2. Data Subsetting and Indexing Problem 
-- **Goal:** Using the dataframe cars in problem 1, extract the following information using subsetting, slicing and indexing operations.
-  - a. Display the first five rows with odd-numbered columns (columns 1, 3, 5, 7...) of cars.
-  - b. Display the row that contains the ‘Model’ of ‘Mazda RX4’.
-  - c. How many cylinders (‘cyl’) does the car model ‘Camaro Z28’ have?
-  - d. Determine how many cylinders (‘cyl’) and what gear type (‘gear’) do the car models ‘Mazda RX4 Wag’, ‘Ford Pantera L’ and ‘Honda Civic’ have.
-
-- **Code:** Begin by loading the CSV file into a DataFrame named cars using the **pd.read_csv( )** function. Use the **.loc[ ]** method to filter rows and select specific columns based on conditions. For Problem a, store the result in a variable called **FirstFive_odd**, which contains the first five rows with the odd-numbered columns explicitly listed. For Problem b, apply a condition to select the row with the model 'Mazda RX4'. For Problem c, filter the DataFrame to select only the cyl column for the model 'Camaro Z28'. For Problem d, run separate **.loc[ ]** commands for each model (Mazda RX4 Wag, Ford Pantera L, and Honda Civic) to display their corresponding cyl and gear values. An alternative approach is to use the **.isin( )** function to combine all three conditions in one run. However, note that when **.isin( )** is used, the results are automatically sorted according to the DataFrame’s index values, so although the instructions list Honda Civic last, it appears in the middle of the output because its index (18) comes after Mazda RX4 Wag (1) and before Ford Pantera L (28).
-
-a.
-  ```python
-   import pandas as pd
-    cars = pd.read_csv('cars.csv')
-  FirstFive_odd = cars.loc[[0,1,2,3,4],['Model', 'cyl', 'hp', 'wt', 'vs', 'gear']]
-  FirstFive_odd
-  ```
-  - **Output:**
-[Problem 2A Output](Problem2A.png)
-
-b.
-  ```python
-   cars.loc[cars['Model']=='Mazda RX4']
-  ```
-  - **Output:**
- [Problem 2B Output](Problem2B.png)
-
-c.
-  ```python
-   cars.loc[(cars['Model']=='Camaro Z28'), ['cyl']]
-  ```
-  - **Output:**
- [Problem 2C Output](Problem2C.png)
+- **Code:** First, compute the Average column by taking the mean of the four subject columns (Math, Electronics, GEAS, Communication) per row. This ensures each student’s overall performance is available in a single column. Then apply boolean conditions (Hometown = Mindanao, Gender = Female, Average >= 55) to filter rows. Store the result in Mindy. In a second step, select only the required columns (Name, Track, Electronics, Average).
   
-d.
-  ```python
-   cars.loc[cars['Model'].isin(['Mazda RX4 Wag', 'Ford Pantera L', 'Honda Civic']), ['cyl', 'gear']]
+```python
+ df["Average"] = df[["Math", "Electronics", "GEAS", "Communication"]].mean(axis=1)    # Create "Average" column = mean of Math, Electronics, GEAS, Communication
+                                                                                     # .mean axis = 1, kasi row wise = avg. per students
+Mindy = df[(df["Hometown"] == "Mindanao") &                                          # filter Mindanao hometown (constant 1)
+           (df["Gender"] == "Female") &                                              # filter Female gender (constant 2)
+           (df["Average"] >= 55)]                                                    # filter Average >= 55
+Mindy = Mindy[["Name", "Track", "Electronics", "Average"]]                           # from the filtered, display their "Name", "Track", "Electronics", "Average"
+Mindy
   ```
   - **Output:**
- [Problem 2D Output](Problem2D.png)
+[Mindy Output](dataframeb.png)
+
 
