@@ -51,4 +51,36 @@ Mindy
   - **Output:**
 [Mindy Output](dataframeb.png)
 
+### 3. Visualization – Average Scores
+- **Goal:** Create a visualization that shows how the different features contributes to average grade
 
+- **Code:** Begin by importing the Matplotlib library using import matplotlib.pyplot as plt.
+Then, for each factor (Track, Gender, Hometown), use the Pandas groupby() function to group the dataset by that factor and compute the mean of the Average column using .mean(). After grouping, call .plot(kind="bar") on the result to generate a bar chart. Add a title with plt.title(), a y-axis label with plt.ylabel(), and finally call plt.show() to display the graph. Repeat this process separately for Track, Gender, and Hometown, resulting in three bar charts.
+  
+```python
+ import matplotlib.pyplot as plt
+df.groupby("Track")["Average"].mean().plot(kind="bar")                                # bar graph of average score by Track
+plt.title("Average Score by Track")
+plt.ylabel("Average Grade")
+plt.show()
+  ```
+  - **Output:**
+[Average Score by Track](visualization1.png)
+
+```python
+ df.groupby("Gender")["Average"].mean().plot(kind="bar")                               # bar graph of average score by Gender
+plt.title("Average Score by Gender")
+plt.ylabel("Average Grade")
+plt.show()
+  ```
+  - **Output:**
+[Average Score by Gender](visualization2.png)
+
+```python
+ df.groupby("Hometown")["Average"].mean().plot(kind="bar")                              # bar graph of average score by Hometown
+plt.title("Average Score by Hometown")
+plt.ylabel("Average Grade")
+plt.show()
+  ```
+  - **Output:**
+[Average Score by Hometown](visualization3.png)
