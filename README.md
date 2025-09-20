@@ -12,7 +12,7 @@ The code can be run in any Python environment or IDE. For this project, Jupyter 
 The dataset used in this assignment (board2.xlsx) was provided through the experiment instructions.
 For convenience, the same Excel file is uploaded in this GitHub repository alongside the Jupyter Notebook, so that users can run the code directly.
 
-Note: When opening Excel files directly in GitHub, the preview may look different compared to how it appears in Pandas or Excel. Always load the dataset into Pandas or Excel to view it correctly.
+Note: When opening Excel files directly in GitHub, the preview may look different compared to how it appears in Pandas or Excel. Always load the dataset into Pandas or Excel to view it correctly. Also make sure that the Jupyter Notebook file (.ipynb) and the Excel dataset (board2.xlsx) are stored in the same folder. Otherwise, the pd.read_excel("board2.xlsx") command will not work because Python will not be able to locate the file.
 
 ## Problems and Solutions
 
